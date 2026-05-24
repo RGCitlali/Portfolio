@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="3dst.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+
+</head>
+<body>
+  <nav class="nav" id="navbar"> <!-- barra de navegación -->
+    <div class="portf">Portfolio</div>
+    <ul class="espacioparalinks"><li><a href="#info">ABOUT ME</a></li><li><a href="#projects">PROJECTS</a></li><li><a href="#skills">SKILLS</a></li><li><a href="#contact">CONTACT</a></li></ul><!-- a para enlazar con el pedacito de pantalla -->
+    <button class="tema" id="tema"><span id="themeIcon"></span></button><!-- tema -->
+  </nav>
+
+  <section class="principal" id="principal">
+    <canvas id="fondodeestrellitas"></canvas> <!-- cositas que se mueven -->
+
+    <div class="contenidoo">
+      <h1 class="nombree"><span>Citlali</span><br /><span class="nombree--last"><em>Ragoyta</em></span></h1>
+      <p class="carrera">Ingeniera Informática</p>
+      <div class="botoncitos">
+        <a href="#projects" class="btn rositaa">See my work</a>
+        <a href="#contact" class="btn tramsparentee">Contact</a>
+      </div>
+    </div>
+
+    <img class="lirio" src="assets/lirio.png" alt="">
+    <img class="lirioo" src="assets/lirio2.png" alt="">
+  </section>
+  <div class="barritaquesemueve"><div class="barritaquesemuevetrack" id="techTrack"></div></div> <!-- barrita que se  mueve -->
+
+  <section class="info" id="info">
+    <div class="info__grid">
+      <div class="cuadritos miinformacion ">
+        <h2><em>A creative developer...</em></h2>
+        <p class="cuadritos__body"> I'm Citlali Ragoyta Gil a former Full-Stack Developer focused on building meaningful, efficient, and user-centered digital solutions; I enjoy transforming ideas into functional applications, solving complex problems and constantly learning new technologies to improve my skills. I'm always learning. My interests extend beyond development into creating projects with real-world impact, where technology can make a difference. Among my strongest qualities are creativity, problem-solving, determination, adaptability, and responsibility, values that guide the way I approach every challenge and project.</p>
+      </div>
+
+      <div class="cuadritos cuadritos datosgrandes">
+        <div><span class="contador" data-target="4  ">0</span><span class="tagg">    MAJOR PROJECTS</span></div>
+        <div><span class="contador" data-target="12  ">0</span><span class="tagg">    TECHNOLOGIES</span></div>
+        <div ><span class="contador" data-target="0  ">0</span><span class="tagg">    YEARS OF EXPERIENCE...</span></div>
+        <img class="moras" src="assets/moras.png" alt="">
+      </div>
+      <div class="fotoo"><img src="assets/illian.png" alt=""></div>
+
+      <div class="cuadritos passionsss">
+        <h2><em>Passions</em></h2>
+        <br>
+        <p>Movile development</p>
+        <p>Projects with social impact</p>
+        <p>Traditional and digital drawing</p>
+        <p>Languaje learning</p>
+        <img class="plantita" src="assets/plant.jpg" alt="">
+      </div>
+
+
+      <div class="ubicacionn"><div class="mapita"> <iframe src="https://www.google.com/maps?q=Concá,Querétaro&output=embed" loading="lazy" allowfullscreen> </iframe></div></div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <div class="yanosecomoponerles">
+      <p class="letrasparatitulos">Portfolio</p>
+      <h2 class="tituloo">Featured Projects</h2>
+    </div>
+
+    <section id="mockups"> <!-- fotos de la app adentro del telefono -->
+      <div class="espacioparamockups">
+        <div class="telefono tizq"><div class="phone-frame"><div class="phone-screen"><img src="assets/96369ab17d464f41f1c1fa0b9db20d31.jpg" alt="ElderCare — Dashboard" class="screen-img" /></div><div class="phone-home-bar"></div></div><span class="quecapturaes">DASHBOARD</span></div>
+        <div class="telefono tmed"><div class="phone-frame"><div class="phone-screen"><img src="assets/96369ab17d464f41f1c1fa0b9db20d31.jpg" alt="ElderCare — Monitor" class="screen-img" /></div><div class="phone-home-bar"></div></div><span class="quecapturaes">MONITOR</span></div>
+        <div class="telefono tder"><div class="phone-frame"><div class="phone-screen"><img src="assets/96369ab17d464f41f1c1fa0b9db20d31.jpg" alt="ElderCare — Alertas" class="screen-img" /></div><div class="phone-home-bar"></div></div><span class="quecapturaes">ALERTS</span></div>
+      </div>
+    </section>
+
+    <div class="misproyectos">
+      <article class="tarj grandee"> <!-- aqui van mis proyectos en una tarjeta cada uno -->
+        <div class="tarjresaltar" style="background:var(--rosafuerte)"></div>
+        <div class="espaciodetarjeta">
+          <span class="etiquetita">APP MOBILE + MONITOR</span>
+          <h3 class="tarjtitle">Yolia, ElderCare health monitor</h3>
+          <p> A mobile application paired with a wearable monitoring band designed to track the health of elderly users in real time. The system sends alerts to caregivers and stores vitals history, enabling proactive healthcare.</p>
+          <span class="masanunciosbonitos">Flutter</span> <span class="masanunciosbonitos">Dart</span> <span class="masanunciosbonitos">IDK</span>
+        </div>
+      </article>
+
+      <article class="tarj larga">
+        <div class="tarjresaltar" style="background:var(--verdeopaco)"></div>
+        <div class="espaciodetarjeta">
+          <span class="etiquetita">RESEARCH</span>
+          <h3 class="tarjtitle">Emotion-Based Stress Analysis in Gamers</h3>
+          <p> Research project in which I trained a facial emotion recognition dataset to detect stress patterns in video game players. Applied computer vision and ML pipelines to produce a functional analysis model. </p>
+          <span class="masanunciosbonitos">UX</span> <span class="masanunciosbonitos">DataSets</span> <span class="masanunciosbonitos">IA</span>
+        </div>
+      </article>
+
+      <article class="tarj ancha">
+        <div class="tarjresaltar" style="background:var(--rosita)"></div>
+        <div class="espaciodetarjeta">
+          <span class="etiquetita">EDUCATION</span>
+          <h3 class="tarjtitle">Xi'iuy Language Learning Course</h3>
+          <p>
+            Co-designed and deployed an interactive digital course for learning 
+            Xi'iuy, an indigenous Mexican language, on the TecNM platform. 
+            Focused on UX, content structuring, and accessibility for non-technical users.
+          </p>
+          <span class="masanunciosbonitos">Instructional Design</span>
+          <span class="masanunciosbonitos">UX</span>
+
+        </div>
+      </article>
+
+      <article class="tarj otra">
+        <div class="tarjresaltar" style="background:var(--vino)"></div>
+        <div class="espaciodetarjeta">
+          <span class="etiquetita">ROBOTICS + AI</span>
+          <h3 class="tarjtitle">Agrobot: Plague Detector</h3>
+          <p>Designed and trained a computer vision model with a repository of 25,000 images to detect crop diseases in tomato plants. Integrated into a robot for autonomous field inspection, helping farmers reduce looses and increase yields.</p>
+          <div class="tarjtechs"><span class="masanunciosbonitos">Python</span> <span class="masanunciosbonitos">YOLOV</span> <span class="masanunciosbonitos"> Google Colab</span> </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <div class="yanosecomoponerles"><h2 class="tituloo">Skills and technologies</h2></div>
+    <div class="sfi" id="skillsFilter">
+      <button class="filtro active" data-filter="all">All</button>
+      <button class="filtro" data-filter="frontend">Frontend</button>
+      <button class="filtro" data-filter="backend">Backend</button>
+      <button class="filtro" data-filter="mobile">Mobile</button>
+      <button class="filtro" data-filter="systems">Systems</button>
+    </div>
+    <div class="habilidadess" id="habilidadesss">
+    </div>
+  </section>
+
+  <section class="modl" id="threeSection">
+    <div>
+      <p class="letrasparatitulos">Interactive</p>
+      <h2 class="tituloo">3D model<br/><em>of the moon</em></h2> <p>Drag to rotate</p>
+      <div> <span class="etiquetita">3D Modeling</span> <span class="etiquetita">Flutter</span> <span class="etiquetita">IDK but it's cute</span></div>
+    </div>
+
+    <div class="campoo">
+      <div class="brillitos"></div>
+      <!-- esto hace que se mire el modelo, la escala es la que controla que tan grande es, debe de ir en 40 pq sino queda demasiado enorme y no se acomoda bien -->
+      <model-viewer 
+        id="plantModel" 
+        src="assets/the_moon.glb" 
+        camera-controls 
+        auto-rotate 
+        camera-orbit="0deg 75deg 300%" 
+        min-camera-orbit="auto auto 200%" 
+        max-camera-orbit="auto auto 500%" 
+        field-of-view="20deg" 
+        scale="0.40 0.40 0.40" 
+        interaction-prompt="none"> 
+      </model-viewer>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">  <!-- lo que esta hasta abajo, la sección de contacto -->
+    <div class="continner">
+      <p class="letrasparatitulos">Let's Talk</p>
+      <h2 class="tituloo "><em>Contact me</em></h2>
+
+      <div class="contgrid">
+        <div>
+          <p>I'm always open to new projects, research, works, but I don't really like to talk...</p>
+          <div class="enlacesss">
+            <a href="https://github.com/RGCitlali?tab=overview&from=2026-05-01&to=2026-05-24" class="enlacess"><i class="devicon-github-original"></i><span>GitHub</span></a>
+            <a href="#" class="enlacess"><i class="devicon-linkedin-plain"></i><span>LinkedIn</span></a>
+            <a href="https://www.instagram.com/byeol_ue?igsh=MWNrdGJ1dXZmdmo4MA%3D%3D&utm_source=qr" class="enlacess"><span>Instagram</span></a>
+          </div>
+          <br><br>
+          <p class="contemail"> Email: rg.citlali19@gmail.com</p>
+          <p class="contemail"> Email: im.strawberry.w@gmail.com</p>
+        </div>
+        <div class="recuadrosdetexto">
+          <div class="entradass"><input type="text" id="contactName" placeholder="Name" /></div>
+          <div class="entradass"><input type="email" id="contactEmail" placeholder="Email" /></div>
+          <div class="entradass"><textarea id="contactMsg" rows="4" placeholder="Write a message..."></textarea></div>
+          <button class="btn rositaa" id="sendBtn">Send Message</button>
+          <p class="contfeedback" id="contactFeedback"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a href="#contact" class="stickyquepidelarubrica"><span>Contact</span></a>
+  <footer class="footer"><p>Tarea de Diseño Web, ya me quiero ir a dormir...</p></footer>
+
+  <script src="script.js"></script>
+  <script src="3djs.js"></script>
+</body>
+</html>
