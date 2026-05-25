@@ -69,8 +69,12 @@ const SKILLS = [
   { icon: 'devicon-mongodb-plain colored', name: 'MongoDB', cat: 'backend'  },
   { icon: 'devicon-git-plain colored', name: 'Git', cat: 'systems'  },
   { icon: 'devicon-github-original', name: 'GitHub', cat: 'systems'  },
-  { icon: 'devicon-linux-plain', name: 'Linux', cat: 'systems'  },
   { icon: 'devicon-vscode-plain colored', name: 'VS Code', cat: 'systems'  },
+  { icon: 'devicon-linux-plain', name: 'Linux', cat: 'systems'  },
+  { icon: 'devicon-debian-plain colored',  name: 'Debian', cat: 'redes' },
+  { icon: 'devicon-linux-plain colored',        name: 'Kali Linux',   cat: 'security' }, // usa el de linux genérico, Kali no tiene propio
+  { icon: 'devicon-ubuntu-plain colored',  name: 'Ubuntu', cat: 'redes' },
+  { icon: 'devicon-nginx-original colored',name: 'Nginx', cat: 'redes' },
 ];
 
 function renderSkills() {

@@ -55,7 +55,8 @@ img { max-width: 100%; }
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 2.5rem;
+  /* padding: 1rem 2.5rem; */
+  padding: 0.1rem 2rem;
   background: var(--nav-bg);
   backdrop-filter: blur(18px);/* efecto borrosito */
   border-bottom: 1px solid var(--border);
@@ -464,7 +465,8 @@ img { max-width: 100%; }
 .phone-frame::after { content: ''; position: absolute; left: -3.5px; top: 72px; width: 3px; height: 32px; background: #333; border-radius: 2px 0 0 2px; box-shadow: 0 44px 0 #333, 0 82px 0 #333; }
 .phone-screen { flex: 1; width: 100%; border-radius: 4px; overflow: hidden; background: #000; position: relative; border-radius: 25px; }
 .screen-img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 6s ease; }
-.telefono:hover .screen-img {transform: translateY(-30%);} /* Scroll cuando se le pone la flechita encima... quitar si no me acuerdo de hacer las capturas largas*/
+.telefono:hover .screen-img {transform: translateY(-5%);} 
+/* Scroll cuando se le pone la flechita encima... quitar si no me acuerdo de hacer las capturas largas*/
 .phone-home-bar { width: 100px; height: 4px; background: rgba(255 255 255 / 0.22); border-radius: 999px; flex-shrink: 0; }
 .quecapturaes { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--textogrisesito); transition: color 0.3s; }
 .telefono:hover .quecapturaes { color: var(--resaltar); }
@@ -477,6 +479,7 @@ img { max-width: 100%; }
 /* CAMBIOS DE TAMAÑO DE LAS COSAS EN LA PANTALLA */
 @media (min-width: 1600px) { .info__grid, .misproyectos { max-width: 1400px; }}
 @media (max-width: 1525px) {.moras { display: none; }} /* la mora sale cuando la pantalla es grande y se quita cuando estorba */
+@media (max-width: 1280px) { .lirio  { width: 380px; right: 70%; } .lirioo { width: 380px; left: 70%; }}
 @media (max-width: 1024px) {
   .info__grid { grid-template-columns: repeat(3, 1fr); }
   .cuadritos--intro { grid-column: 1 / 4; }
@@ -486,6 +489,9 @@ img { max-width: 100%; }
   .cuadritos--location { grid-column: 3 / 4; grid-row: 3; }
   .misproyectos { grid-template-columns: repeat(6, 1fr); }
   .grandee, .larga, .ancha, .otra { grid-column: 1 / 7; }
+  .lirio  { width: 300px; right: 69%; }
+  .lirioo { width: 300px; left: 69%; }
+  .phone-frame { width: 200px; height: 420px; }
 }
 
 @media (max-width: 768px) {
@@ -501,6 +507,9 @@ img { max-width: 100%; }
   .phone-frame { width: 160px; height: 320px; border-radius: 30px; }
   .tizq { transform: rotate(-6deg) translateY(28px) scale(0.9); }
   .tder { transform: rotate(6deg)  translateY(28px) scale(0.9); }
+  .lirio  { width: 220px; right: 69%; } /* acomodar las florecitas conforme se hace pequeña la pantalla */
+  .lirioo { width: 220px; left: 69%; }
+  .phone-frame { width: 120px; height: 250px; }
 }
 
 @media (max-width: 480px) { 
@@ -509,26 +518,7 @@ img { max-width: 100%; }
   .enlacesss { flex-direction: column; }
   .nav { padding: 1rem 1.25rem; }
   .tizq, .tder { display: none; }
-  .phone-frame { width: 200px; height: 400px; } /* cuando es telefono, solo muestra el de en medio */
-}
-
-
-@media (max-width: 1280px) {
-  .lirio  { width: 380px; right: 70%; }
-  .lirioo { width: 380px; left: 70%; }
-}
-
-@media (max-width: 1024px) {
-  .lirio  { width: 300px; right: 69%; }
-  .lirioo { width: 300px; left: 69%; }
-}
-
-@media (max-width: 768px) {
-  .lirio  { width: 220px; right: 69%; }
-  .lirioo { width: 220px; left: 69%; }
-}
-
-@media (max-width: 480px) {
   .lirio  { width: 100px; right: 76%; }
   .lirioo { width: 100px; left: 76%; }
+  .phone-frame { width: 200px; height: 400px; } /* para que se hagan pequeños los telefonos  */
 }
