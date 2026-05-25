@@ -223,53 +223,22 @@ function initHeroCanvas() {
       const lineIdx = i % CODE_LINES.length;
       const goRight = i % 2 === 0;
       const speed   = 0.3 + (i % 5) * 0.15;
-
       // x inicio aleatorio de las letras que se mueven
       const startX = Math.random() * canvas.width;
-
-      rows.push({
-        text:    CODE_LINES[lineIdx].text,
-        color:   CODE_LINES[lineIdx].color,
-        y:       i * LINE_H,
-        x:       startX,
-        speed:   goRight ? speed : -speed,
-        goRight,
-      });
+      rows.push({ text: CODE_LINES[lineIdx].text, color: CODE_LINES[lineIdx].color, y: i * LINE_H, x: startX, speed: goRight ? speed : -speed, goRight, });
     }
     return rows;
   }
-
   let rows = [];
 
-  window.addEventListener('resize', () => {
-    resize();
-    rows = buildRows();
-  });
-
+  window.addEventListener('resize', () => { resize(); rows = buildRows();});
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.font = FONT;
 
-    // rows.forEach(row => {
-    //   row.x += row.speed;
-
-    //   if (row.goRight && row.x > canvas.width + 300) {
-    //     row.x = -300;
-    //   } else if (!row.goRight && row.x < -300) {
-    //     row.x = canvas.width + 300;
-    //   }
-
-    //   if (!row.text) return;
-
-    //   ctx.globalAlpha = 0.55;
-    //   ctx.fillStyle   = row.color;
-    //   ctx.fillText(row.text, row.x, row.y);
-    // });
     rows.forEach(row => {
       if (!row.text) return;
-
       row.x += row.speed;
-
       const textWidth = ctx.measureText(row.text).width;
       const gap = textWidth + 80; // 80px de espacio entre repeticiones
       if (row.goRight && row.x > gap) {// que no dejen de salir las letras
@@ -291,8 +260,6 @@ function initHeroCanvas() {
     requestAnimationFrame(draw);
   }
 
-  // ── FIX PRINCIPAL: esperar a que el navegador pinte el canvas
-  //    para que offsetWidth/offsetHeight ya tengan valores reales
   requestAnimationFrame(() => {
     resize();
     rows = buildRows();
@@ -302,236 +269,24 @@ function initHeroCanvas() {
 
 initHeroCanvas();
 
-// function initMainThree() {
-//   const canvas = document.getElementById('mainfondodeestrellitas');
-//   if (!canvas || !window.THREE) return;
-
-//   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-//   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-//   const W = canvas.offsetWidth  || 600;
-//   const H = canvas.offsetHeight || 500;
-//   renderer.setSize(W, H);
-
-//   const scene  = new THREE.Scene();
-//   const camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 200);
-//   camera.position.set(0, 0, 14);
-
-//   const ambient = new THREE.AmbientLight(0xffffff, 0.8);
-//   scene.add(ambient);
-//   const pointLight = new THREE.PointLight(0xE19184, 2.5, 40);
-//   pointLight.position.set(5, 5, 5);
-//   scene.add(pointLight);
-//   const pointLight2 = new THREE.PointLight(0x475B35, 1.5, 40);
-//   pointLight2.position.set(-6, -4, 3);
-//   scene.add(pointLight2);
-
-//   function makePetal(size, color) {
-//     const shape = new THREE.Shape();
-//     const arms  = 4;
-//     for (let i = 0; i < arms * 2; i++) {
-//       const angle = (i / (arms * 2)) * Math.PI * 2 - Math.PI / 4;
-//       const r = i % 2 === 0 ? size : size * 0.4;
-//       const x = Math.cos(angle) * r;
-//       const y = Math.sin(angle) * r;
-//       i === 0 ? shape.moveTo(x, y) : shape.lineTo(x, y);
-//     }
-//     shape.closePath();
-//     const geo = new THREE.ShapeGeometry(shape, 6);
-//     const mat = new THREE.MeshPhongMaterial({
-//       color,
-//       side: THREE.DoubleSide,
-//       shininess: 80,
-//       transparent: true,
-//       opacity: 0.92,
-//     });
-//     return new THREE.Mesh(geo, mat);
-//   }
-
-//   function makeFlowerCluster(cx, cy, cz, baseColor, count = 18, spread = 2.2) {
-//     const group = new THREE.Group();
-//     const colors = [baseColor, baseColor + 0x111111, baseColor - 0x111111];
-//     for (let i = 0; i < count; i++) {
-//       const petal = makePetal(0.18 + Math.random() * 0.14, colors[i % colors.length]);
-//       petal.position.set(
-//         cx + (Math.random() - 0.5) * spread,
-//         cy + (Math.random() - 0.5) * spread,
-//         cz + (Math.random() - 0.5) * spread * 0.5
-//       );
-//       petal.rotation.set(
-//         Math.random() * Math.PI,
-//         Math.random() * Math.PI,
-//         Math.random() * Math.PI
-//       );
-//       petal.userData.phase    = Math.random() * Math.PI * 2;
-//       petal.userData.rotSpeed = (Math.random() - 0.5) * 0.008;
-//       group.add(petal);
-//     }
-//     return group;
-//   }
-
-//   const clusters = [
-//     makeFlowerCluster(-3.5,  2,    0,   0xC63E4E, 22, 2.5),
-//     makeFlowerCluster( 3.5, -1.5,  1,   0x475B35, 18, 2.2),
-//     makeFlowerCluster( 0.5,  3,   -1,   0xE19184, 20, 2.4),
-//     makeFlowerCluster(-1,   -3,    0.5, 0x620607, 16, 2.0),
-//   ];
-//   clusters.forEach(c => scene.add(c));
-
-//   function makeStar(size, color) {
-//     const shape = new THREE.Shape();
-//     const arms  = 4;
-//     for (let i = 0; i < arms * 2; i++) {
-//       const angle = (i / (arms * 2)) * Math.PI * 2 - Math.PI / 2;
-//       const r = i % 2 === 0 ? size : size * 0.3;
-//       i === 0 ? shape.moveTo(Math.cos(angle)*r, Math.sin(angle)*r)
-//               : shape.lineTo(Math.cos(angle)*r, Math.sin(angle)*r);
-//     }
-//     shape.closePath();
-//     const geo = new THREE.ShapeGeometry(shape, 4);
-//     const mat = new THREE.MeshPhongMaterial({ color, side: THREE.DoubleSide, shininess: 120 });
-//     return new THREE.Mesh(geo, mat);
-//   }
-
-//   const starPositions = [
-//     [ 5.5,  3.5, -2, 0xF5F9E5, 0.55],
-//     [-5.0,  1.0, -1, 0xC63E4E, 0.38],
-//     [ 2.0, -4.0,  1, 0xE19184, 0.45],
-//     [-2.5,  4.5,  0, 0x475B35, 0.32],
-//     [ 6.0, -2.5, -1, 0xF5F9E5, 0.28],
-//   ];
-//   const starMeshes = starPositions.map(([x, y, z, c, s]) => {
-//     const m = makeStar(s, c);
-//     m.position.set(x, y, z);
-//     m.userData.rotSpeed = (Math.random() - 0.5) * 0.015;
-//     m.userData.phase    = Math.random() * Math.PI * 2;
-//     scene.add(m);
-//     return m;
-//   });
-
-//   const trailMat = new THREE.LineBasicMaterial({ color: 0xF5F9E5, transparent: true, opacity: 0.6 });
-//   const trails   = [];
-//   for (let i = 0; i < 12; i++) {
-//     const pts = [
-//       new THREE.Vector3((Math.random()-0.5)*18, (Math.random()-0.5)*10, (Math.random()-0.5)*4),
-//       new THREE.Vector3(0, 0, 0)
-//     ];
-//     const dir = new THREE.Vector3((Math.random()-0.5), -Math.random()*0.5, 0).normalize().multiplyScalar(0.8 + Math.random()*1.5);
-//     pts[1].copy(pts[0]).add(dir);
-//     const geo  = new THREE.BufferGeometry().setFromPoints(pts);
-//     const line = new THREE.Line(geo, trailMat.clone());
-//     line.userData.speed = 0.04 + Math.random() * 0.06;
-//     line.userData.life  = Math.random();
-//     trails.push(line);
-//     scene.add(line);
-//   }
-
-//   let isDragging = false;
-//   let prevMouse  = { x: 0, y: 0 };
-//   let rotX = 0, rotY = 0;
-
-//   canvas.addEventListener('mousedown',  e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
-//   window.addEventListener('mouseup',    () => { isDragging = false; });
-//   window.addEventListener('mousemove',  e => {
-//     if (!isDragging) return;
-//     const dx = e.clientX - prevMouse.x;
-//     const dy = e.clientY - prevMouse.y;
-//     rotY += dx * 0.008;
-//     rotX += dy * 0.008;
-//     prevMouse = { x: e.clientX, y: e.clientY };
-//   });
-
-//   canvas.addEventListener('touchstart', e => {
-//     isDragging = true;
-//     prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-//   }, { passive: true });
-//   window.addEventListener('touchend',   () => { isDragging = false; });
-//   window.addEventListener('touchmove',  e => {
-//     if (!isDragging) return;
-//     const dx = e.touches[0].clientX - prevMouse.x;
-//     const dy = e.touches[0].clientY - prevMouse.y;
-//     rotY += dx * 0.008;
-//     rotX += dy * 0.008;
-//     prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-//   }, { passive: true });
-
-//   function resizeMain() {
-//     const w = canvas.offsetWidth, h = canvas.offsetHeight || 500;
-//     renderer.setSize(w, h);
-//     camera.aspect = w / h;
-//     camera.updateProjectionMatrix();
-//   }
-//   window.addEventListener('resize', resizeMain);
-
-//   function animateMain() {
-//     requestAnimationFrame(animateMain);
-//     const t = performance.now() * 0.001;
-
-//     if (!isDragging) {
-//       rotY += 0.003;
-//     }
-
-//     clusters.forEach((cluster, ci) => {
-//       cluster.rotation.y = rotY + ci * 0.3;
-//       cluster.rotation.x = rotX * 0.5;
-//       cluster.children.forEach(petal => {
-//         petal.rotation.z += petal.userData.rotSpeed;
-//         petal.position.y += Math.sin(t * 0.5 + petal.userData.phase) * 0.001;
-//       });
-//     });
-
-//     starMeshes.forEach(m => {
-//       m.rotation.z += m.userData.rotSpeed;
-//       m.position.y += Math.sin(t * 0.6 + m.userData.phase) * 0.003;
-//     });
-
-//     trails.forEach(trail => {
-//       trail.userData.life += trail.userData.speed * 0.016;
-//       if (trail.userData.life > 1) {
-//         trail.userData.life = 0;
-//         const x = (Math.random()-0.5)*18;
-//         const y = (Math.random()-0.5)*10;
-//         const z = (Math.random()-0.5)*4;
-//         const positions = trail.geometry.attributes.position;
-//         positions.setXYZ(0, x, y, z);
-//         const dir = new THREE.Vector3((Math.random()-0.5), -Math.random()*0.5, 0).normalize().multiplyScalar(1.2);
-//         positions.setXYZ(1, x + dir.x, y + dir.y, z + dir.z);
-//         positions.needsUpdate = true;
-//       }
-//       trail.material.opacity = Math.sin(trail.userData.life * Math.PI) * 0.6;
-//     });
-
-//     pointLight.intensity = 2 + Math.sin(t * 0.8) * 0.5;
-
-//     renderer.render(scene, camera);
-//   }
-//   animateMain();
-// }
-// initMainThree();
-
-
 const sendBtn         = document.getElementById('sendBtn');
 const contactFeedback = document.getElementById('contactFeedback');
-
 if (sendBtn) {
   sendBtn.addEventListener('click', () => {
     const name  = document.getElementById('contactName')?.value.trim();
     const email = document.getElementById('contactEmail')?.value.trim();
     const msg   = document.getElementById('contactMsg')?.value.trim();
-
     if (!name || !email || !msg) {
-      contactFeedback.textContent = 'Please fill in all fields.';
+      contactFeedback.textContent = 'U gotta fill all the fields first';
       contactFeedback.style.color = 'var(--rosafuerte)';
       return;
     }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      contactFeedback.textContent = 'Please enter a valid email address.';
+      contactFeedback.textContent = 'Thats not a valid email';
       contactFeedback.style.color = 'var(--rosafuerte)';
       return;
     }
-
     sendBtn.textContent = 'Sending…';
     sendBtn.disabled    = true;
     setTimeout(() => {
@@ -539,7 +294,6 @@ if (sendBtn) {
       contactFeedback.style.color = 'var(--verdeopaco)';
       sendBtn.textContent = 'Send Message';
       sendBtn.disabled    = false;
-
       document.getElementById('contactName').value  = '';
       document.getElementById('contactEmail').value = '';
       document.getElementById('contactMsg').value   = '';
@@ -547,30 +301,15 @@ if (sendBtn) {
   });
 }
 
-
 const revealStyle = document.createElement('style');
 revealStyle.textContent = `
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.revealed { opacity: 1; transform: translateY(0); }
 `;
 document.head.appendChild(revealStyle);
 
 function prepareReveal() {
-  const targets = [
-    '.cuadritos',
-    '.tarj',
-    '.scca',
-    '.yanosecomoponerles',
-    '.continfo',
-    '.recuadrosdetexto',
-  ];
+  const targets = [ '.cuadritos', '.tarj', '.scca', '.yanosecomoponerles', '.continfo', '.recuadrosdetexto', ];
   targets.forEach(selector => {
     document.querySelectorAll(selector).forEach((el, i) => {
       el.classList.add('reveal');
@@ -588,27 +327,20 @@ const revealObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.12 });
-
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
 
 (function initMockupsParallax() {
   const stage  = document.querySelector('.espacioparamockups');
   const phoneL = document.querySelector('.tizq');
   const phoneR = document.querySelector('.tder');
   const phoneC = document.querySelector('.tmed');
-
   if (!stage || !phoneL || !phoneR) return;
-
   function onScroll() {
     const rect = stage.getBoundingClientRect();
     const winH = window.innerHeight;
-
     if (rect.bottom < 0 || rect.top > winH) return;
-
     const progress = 1 - rect.bottom / (winH + rect.height);
     const offset   = progress * 40;
-
     phoneL.style.transform = `rotate(-8deg) translateY(${40 - offset}px) scale(0.88)`;
     phoneR.style.transform = `rotate(8deg)  translateY(${40 - offset}px) scale(0.88)`;
     phoneC.style.transform = `translateY(${-offset * 0.4}px)`;
@@ -620,7 +352,6 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 function initModelViewer() {
   const model = document.getElementById('plantModel');
   if (!model) return;
-
   // rotación al hacer scroll
   window.addEventListener('scroll', () => {
     const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -629,12 +360,10 @@ function initModelViewer() {
     const rotX = 75 - pct * 20;
     model.cameraOrbit = `${rotY}deg ${rotX}deg 2.5m`;
   }, { passive: true });
-
   // que se mueva con el scroll
   window.addEventListener('scroll', () => {
     const section = document.getElementById('threeSection');
     if (!section) return;
-
     const rect    = section.getBoundingClientRect();
     const winH    = window.innerHeight;
     if (rect.bottom < 0 || rect.top > winH) return;
@@ -643,8 +372,6 @@ function initModelViewer() {
     const scale    = 0.92 + progress * 0.08;// crece poquito
     model.style.transform = `translateY(${floatY}px) scale(${scale})`;
   }, { passive: true });
-
-  // animación flotante continua
   let t = 0;
   function floatLoop() {
     t += 0.012;
